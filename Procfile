@@ -1,1 +1,1 @@
-web: gunicorn ajaxcrud.wsgi:application --log-file
+web: gunicorn ajaxcrud.wsgi --log-file -
