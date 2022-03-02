@@ -1,0 +1,479 @@
+{% load static %}
+{% load utils %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <style>
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light-rgb: 248, 249, 250;
+  --bs-dark-rgb: 33, 37, 41;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+  --bs-body-bg: #fff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  width: 100%;
+  /* padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem); */
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.row {
+  /* --bs-gutter-x: 1.5rem; */
+  /* --bs-gutter-y: 0; */
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-top: calc(-1 * var(--bs-gutter-y)); */
+  /* margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x)); */
+}
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  /* padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5); */
+  /* margin-top: var(--bs-gutter-y); */
+}
+
+.col {
+  flex: 1 0 0%;
+}
+
+.col-1 {
+  flex: 0 0 auto;
+  width: 8.33333333%;
+}
+
+.col-2 {
+  flex: 0 0 auto;
+  width: 16.66666667%;
+}
+
+.col-3 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+
+.col-4 {
+  flex: 0 0 auto;
+  width: 33.33333333%;
+}
+
+.col-5 {
+  flex: 0 0 auto;
+  width: 41.66666667%;
+}
+
+.col-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+.col-7 {
+  flex: 0 0 auto;
+  width: 58.33333333%;
+}
+
+.col-8 {
+  flex: 0 0 auto;
+  width: 66.66666667%;
+}
+
+.col-9 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+
+.col-10 {
+  flex: 0 0 auto;
+  width: 83.33333333%;
+}
+
+.col-11 {
+  flex: 0 0 auto;
+  width: 91.66666667%;
+}
+
+.col-12 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.offset-1 {
+  margin-left: 8.33333333%;
+}
+
+.offset-2 {
+  margin-left: 16.66666667%;
+}
+
+.offset-3 {
+  margin-left: 25%;
+}
+
+.offset-4 {
+  margin-left: 33.33333333%;
+}
+
+.offset-5 {
+  margin-left: 41.66666667%;
+}
+
+.offset-6 {
+  margin-left: 50%;
+}
+
+.offset-7 {
+  margin-left: 58.33333333%;
+}
+
+.offset-8 {
+  margin-left: 66.66666667%;
+}
+
+.offset-9 {
+  margin-left: 75%;
+}
+
+.offset-10 {
+  margin-left: 83.33333333%;
+}
+
+.offset-11 {
+  margin-left: 91.66666667%;
+}
+
+
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+.mt-3 {
+  margin-top: 1rem !important;
+}
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: #212529;
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+  --bs-table-active-color: #212529;
+  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+  --bs-table-hover-color: #212529;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  vertical-align: top;
+  border-color: #dee2e6;
+}
+.table > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.table > tbody {
+  vertical-align: inherit;
+}
+.table > thead {
+  vertical-align: bottom;
+}
+
+.table-primary {
+  --bs-table-bg: #cfe2ff;
+  --bs-table-striped-bg: #c5d7f2;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #bacbe6;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #bfd1ec;
+  --bs-table-hover-color: #000;
+  color: #000;
+  border-color: #bacbe6;
+}
+
+
+.pt-2 {
+  padding-top: 0.5rem !important;
+}
+
+.pt-3 {
+  padding-top: 1rem !important;
+}
+
+.border-primary {
+  border-color: #0d6efd !important;
+}
+
+.p-2 {
+  padding: 0.5rem !important;
+}
+
+.nlast{
+  position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+    </style>
+
+    <title>MCS</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="text-center">
+            <!-- <div id="textbox" style="display: flex;justify-content: space-between;">
+                <p class="alignleft" ></p>
+                <p class="aligncenter">||Shri||</p>
+                <p class="alignright" >Mob: 97553-53938,95890-61193</p>
+                </div> -->
+            <div class="row">
+                <div style="color: darkblue;" class="col-2 offset-5">||Shri||</div>
+                <!-- <div style="color: darkblue;" class="col-4 offset-1">Mob: 97553-53938,95890-61193</div> -->
+            </div>
+            <img src="static/image/mcs.jpeg" style="width: 80%;height: 80px;" alt="">
+            <!-- <img src="/home/vedant/django all/ajax_django/ajaxcrud/app/templates/app/mcs.jpeg" style="width: 80%;height: 80px;" alt=""> -->
+            <!-- <img src="mcs.jpeg" style="width: 80%;height: 100px;" class="img-fluid" alt="..."> -->
+            <div style="color: darkblue;" class="mt-2">A.B Road,Sendhwa (M.P.)   Mob: 97553-53938,95890-61193</div>
+        </div>
+        <div class="row mt-3">
+            <div style="color: darkblue;" class="col-8"><b> Party Name: <span style="color: black;">{{name}}</span> </b></div>
+            <div style="color: darkblue;" class="col-4"><b> Date: <span style="color: black;">{{date|date:'Y-m-d'}} </span></b></div>
+            <div style="color: darkblue;" class="col-4"><b> Bill no: <span style="color: black;">{{billno}} </span></b></div>
+        </div>
+        <table class="table table-bordered border-primary mt-3 text-center pt-2" style="border: 1px solid darkblue;" >
+          <thead style="border: 1px solid darkblue;">  
+          <tr>
+                <th style="color: darkblue;">DATE</th>
+                <th style="color: darkblue;width: 50%;">C.N No.</th>
+                <th style="color: darkblue;">AMOUNT</th>
+            </tr>
+          </thead>
+          <tbody style="height: 740px;">
+        {% for key3,value3 in summary_dict.items %}
+          <tr style="height: 35px; ">
+            {% for val in value3 %}
+              <td style="color: black;">{{val}}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+        {% for nrows in summary_rows|times %}
+        <tr style="height: 35px; border-bottom: none;border-top: none;">
+          <td style="color: black; border-left: 1px solid darkblue;border-right: 1px solid darkblue;"></td>
+          <td style="color: black; border-left: 1px solid darkblue;border-right: 1px solid darkblue;"></td>
+          <td style="color: black; border-left: 1px solid darkblue;border-right: 1px solid darkblue;"></td>
+        </tr>
+        {% endfor %}
+        <tr style="height: 35px; border-bottom: none;border-top: none;"> 
+          <td style="color: darkblue;"></td>
+          <td style="color: black;width: 50%;">Total</td>
+          <td style="color: black;"> {{total}} </td>
+      </tr>
+      <tr style="height: 35px; border-bottom: none;border-top: none;">
+        <td style="color: darkblue;"></td>
+        <td style="color: black;width: 50%;">CGST 9%</td>
+        <td style="color: black;"> {{cgst}} </td>
+    </tr>
+    <tr style="height: 35px; border-bottom: none;border-top: none;">
+      <td style="color: darkblue;"></td>
+      <td style="color: black;width: 50%;">SGST 9%</td>
+      <td style="color: black;"> {{sgst}} </td>
+  </tr>
+        
+          </tbody>
+          <tfoot>
+            <tr style="height: 35px;">
+              <td style="color: darkblue;"></td>
+              <td style="color: black;width: 50%;"> <b> Grand Total (round off) </b></td>
+              <td style="color: black;"> <b> {{grand_total}} </b> </td>
+          </tr>
+          </tfoot>
+        </table>
+        <pre style="color: darkblue;">
+          <b>
+Payments Deposited by RTGS NEFT in Favour of Madhur Courier Services
+A/c No.2053881152 Central Bank of India IFS Code CBIN0283521 SENDHWA
+</b></pre>
+      
+        <div style="color: darkblue; text-align: right;">
+          For: Madhur Courier
+        </div>       
+    </div>
+    <div> 
+      <pdf:nextpage /> 
+    </div> 
+
+<!-- all bill pages here from -->
+
+
+{% for key,value in all_booking.items %}
+            
+  {% if forloop.counter == total_page %}
+            <div class="table-container" style="overflow-x:auto">
+              <table class="table table-bordered p-2" style="border: 1px solid black;">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 5%;" >S/no</th>
+                        <th scope="col" style="width: 10%;">DATE</th>
+                        <th scope="col" style="width: 12%;">DOCKET</th>
+                        <th scope="col" style="width: 44%;">NAME</th>
+                        <th scope="col" style="width: 8%;">WEIGHT (Kg)</th>
+                        <th scope="col" style="width: 14%;">CITY</th>
+                        <th scope="col" style="width: 7%;">PRICE</th>
+                    </tr>
+                </thead>
+            <tbody>
+      {% for key2,value2 in value.items %}  
+          {% if key2 == 'filedata' %}
+              {% for item in value2 %}
+              <tr>                  
+                <td>{{forloop.counter}}</td>
+                <td>{{item.date|date:'Y-m-d'}}</td>
+                <td>{{item.docket_no}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.weight}}</td>
+                <td>{{item.city}}</td>
+                <td>{{item.price}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <div style="color: black; text-align: right;">
+            <h2> Total = {{value2}} </h2>
+          </div>
+          {% endif %}
+      {% endfor %}
+
+  {% else %}
+            <div class="table-container" style="overflow-x:auto">
+              <table class="table table-bordered p-2" style="border: 1px solid black;">
+                <thead>
+                    <tr>
+                        <th scope="col" style="width: 5%;" >S/no</th>
+                        <th scope="col" style="width: 10%;">DATE</th>
+                        <th scope="col" style="width: 12%;">DOCKET</th>
+                        <th scope="col" style="width: 44%;">NAME</th>
+                        <th scope="col" style="width: 8%;">WEIGHT (Kg)</th>
+                        <th scope="col" style="width: 14%;">CITY</th>
+                        <th scope="col" style="width: 7%;">PRICE</th>
+                    </tr>
+                </thead>
+              <tbody>
+                {% for key2,value2 in value.items %}  
+                {% if key2 == 'filedata' %}
+                    {% for item in value2 %}
+                    <tr>                  
+                      <td>{{forloop.counter}}</td>
+                      <td>{{item.date|date:'Y-m-d'}}</td>
+                      <td>{{item.docket_no}}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.weight}}</td>
+                      <td>{{item.city}}</td>
+                      <td>{{item.price}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                {% else %}
+                <div style="color: black; text-align: right;">
+                  <h2> Total = {{value2}} </h2>
+                </div>
+                {% endif %}
+            {% endfor %}
+  {% endif %}  
+    <div> 
+      <pdf:nextpage /> 
+    </div> 
+{% endfor %}
+  </body>
+</html>

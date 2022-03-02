@@ -1,0 +1,99 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load myapp_extras %}
+
+{% block title %} MCS {% endblock %}
+
+
+{% block navbar %}
+<a class="btn btn-outline-primary mx-2" href="{% url 'home' ids %}"> Return To Booking </a>
+{% endblock %}
+
+{% block headname %}
+    {{book.name}}
+{% endblock %}
+
+{% block addbook %}
+<h6 class="text-center alert alert-info">Generate Bill</h6>
+<div class="my-4" style="color: red;" >
+    Last Bill no: {{last_bill_no.bill_no}}
+</div>
+<form action="" id="form" method="post">
+    {% csrf_token %}
+    From: <input class="form-control my-2" type="date" name="fromdate" id="">
+    To: <input class="form-control my-2" type="date" name="todate" id="">
+    Bill No.: <input class="form-control my-2" type="search" name="billno" id="">
+    <button type="submit"  name="download" class="my-2 btn btn-success" value="download"> Download Pdf</button>
+    <button type="reset" class="btn btn-info">Reset Form</button>
+    {% if error %}
+  <p class="alert alert-danger alert-dismissible fade show"> Please enter both dates or enter bill number </p>
+  {% endif %}
+</form> 
+{% endblock %}
+
+{% block book %}
+<h6 class="text-center alert alert-info">Previous Bills Generated</h6>
+<table class="table table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 8%;">Bill</th>
+            <th scope="col" style="width: 12%;">DATE</th>
+            <th scope="col" style="width: 17%;">FROM</th>
+            <th scope="col" style="width: 17%;">TO</th>
+            <th scope="col" style="width: 11%;">PRICE</th>
+            <th scope="col" style="width: 10%;">ACTION</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        {% for dat in page_obj %}
+        <tr>
+            <td>{{dat.bill_no}}</td>
+            <td>{{dat.date_generate|date:'Y-m-d'}}</td>
+            <td>{{dat.bill_date_from}}</td>
+            <td>{{dat.bill_date_to}}</td>
+            <td>{{dat.price}}</td>
+            <td>
+                <button type="submit" style="background-color: white;"  name="downloadold" value="download"> <a href="{% url 'download_old' ids dat.bill_no %}"> <i class="fa fa-download" style="font-size:18px"></i> </a></button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Previous</a>
+      </li>
+    {% endif %}
+    {% for i in page_obj.paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">
+            {{ i }}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="True">Next</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% include "app/ajax.html" %}
+{% endblock %}

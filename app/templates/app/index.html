@@ -1,0 +1,49 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %} MCS {% endblock %}
+
+{% block headname %}
+    Booking All
+{% endblock %}
+
+{% block addbook %}
+<h6 class="text-center alert alert-info">Add New file</h6>
+<form action="" method="post" id="bookform">
+    {% csrf_token %}
+    <input type="hidden" name="bookid" id="bookid">
+   {{form}}
+    <input type="button" class="btn btn-success my-2" id="bookbtnsave" value="Save">
+    <button type="reset" class="btn btn-info my-2">Reset Form</button> 
+</form> 
+<!-- <button id="bookclear" class="btn btn-info  my-1">Clear</button> -->
+<div id="bookmsg" class="alert alert-success" style="display: none;"></div>
+{% endblock %}
+
+{% block book %}
+<h6 class="text-center alert alert-info">Booking</h6>
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th scope="col">S/no</th>
+            <th scope="col">NAME</th>
+            <th scope="col">EMAIL</th>
+        </tr>
+    </thead>
+    <tbody id="booktbody">
+        {% for dat in data %}
+        <tr class="table-row" style="cursor: pointer;">
+            <td> <a href="{% url 'home' dat.id %}"> {{dat.id}}</a></td>
+            <td><a href="{% url 'home' dat.id %}">{{dat.name}}</a></td>
+            <td><a href="{% url 'home' dat.id %}">{{dat.email}}</a></td>
+            <td>
+                <input type="button" value="Edit" class="btn btn-warning btn-sm btn-edit-book" data-sid={{dat.id}}>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include "app/ajax_for_index.html" %}
+{% endblock %}
+
+

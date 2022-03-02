@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>{% block title %} {% endblock %}</title>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+  .search_input{
+    height: 10px!important;
+  }
+</style>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid mx-5">
+          <a class="navbar-brand" href="{% url 'index' %}">Booking</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+              </li>
+              
+            </ul>
+            <form class="d-flex">
+              {% block navbar %}
+                Welcome to MCS Booking
+              {% endblock %}
+              <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button> -->
+            </form>
+            <span style="background-color: white;" class="mx-2" > <a href="{% url 'logout' %}"> <i class="fa fa-sign-out" style="font-size:24px"></i> </a></span>
+            
+          </div>
+        </div>
+      </nav>
+
+    
+</head>
+<body>
+    <div class="container mt-1">
+        <h6 class="text-center alert alert-info">
+            {% block headname %} {% endblock %}
+        </h6>
+        <div>
+          {% block filter %} {% endblock %}
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                {% block addbook %}{% endblock %}
+            </div>
+            <div class="col-sm-9">
+                {% block book %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+  made by Vedant Chourasia
+</footer>
+</html>

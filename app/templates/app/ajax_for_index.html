@@ -1,0 +1,89 @@
+<script>
+    window.onload = function() {
+        $("#bookform")[0].reset();
+        console.log("cleared")
+};
+    $(document).ready(function($) {
+    $("#bookclear").click(function() {
+        $("#bookform")[0].reset();
+        console.log("cleared")
+    });
+});
+
+$("#bookbtnsave").click(function(){
+        console.log("book save button clicked")
+    output = "";
+    let sid = $("#bookid").val();
+    let nm = $("#booknameid").val();
+    let em = $("#bookemailid").val();
+
+    let csr = $("input[name=csrfmiddlewaretoken").val();
+    if(nm=="")
+    {
+        console.log("Please enter name");
+    }
+    else if(em=="")
+    {
+        console.log("Please enter email");
+    }
+    else{
+        console.log(em);
+        console.log(nm);   
+        mydata = {stuid:sid,name : nm,email:em,csrfmiddlewaretoken:csr}
+        console.log(mydata)
+        $.ajax({
+            url: "{% url 'save_for_book'  %}",
+            method: 'POST',
+            data:mydata,
+            success:function(data){
+                // console.log(data.status);
+                if(data.status == "Save"){
+                    $("#bookmsg").text("Form submitted")
+                    $("#bookmsg").show()
+
+                    // console.log(data.mydata)
+                    x = data.mydata
+
+                    for(i = 0;i<x.length;i++)
+                    {
+                        let base_url = "{% url 'home' 0 %}";
+                        let url = base_url.replace("0",x[i].id)
+                        output += "<tr><td>" + "<a href='" + url + "'>" + x[i].id + "</a>"+ "</td><td>"+ "<a href='" + url + "'>" + x[i].name + "</a>" + "</td><td>" + "<a href='" + url + "'>" + x[i].email + "</a>" + "</td><td><input type='button' value='Edit' class='btn btn-warning btn-sm btn-edit-book' data-sid=" + x[i].id + ">"
+                    }   
+                    $("#booktbody").html(output);
+                    $("#bookid").val("")
+                    $("#bookform")[0].reset();
+                }
+                else
+                {
+                    $("#bookmsg").text("Nahi hua")
+                    $("#bookmsg").show()
+                }
+            }
+        })
+
+    }
+});
+
+$("#booktbody").on("click",".btn-edit-book",function(){
+    console.log("edit buton clicked book");
+    let id = $(this).attr("data-sid");
+    let csr = $("input[name=csrfmiddlewaretoken").val();
+    // console.log(id);
+    mydata = {sid:id,csrfmiddlewaretoken:csr};
+    // console.log(mydata)
+    $.ajax({
+        url:"{% url 'edit_for_book' %}",
+        method:"POST",
+        data:mydata,
+        success:function(data){
+            // console.log(data)
+            $("#bookid").val(data.id);
+            $("#booknameid").val(data.name);
+            $("#bookemailid").val(data.email);
+        }
+    })
+
+})
+
+</script>
