@@ -33,4 +33,4 @@ urlpatterns = [
     path('generatebill/<int:id>', views.generatebill,name="generatebill"),
     path('generatebillold/<int:id>/<int:billno>', views.download_old,name="download_old"),
     # path('generatepdf/<int:id>/', views.Generatepdf.as_view(), name = 'generatepdf'),
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+]
