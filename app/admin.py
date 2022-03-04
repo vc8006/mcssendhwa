@@ -9,7 +9,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Bookings)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id','name','email')
+    list_display = ('id','name','email','s_no')
 
 @admin.register(Bill)
 class UserAdmin(admin.ModelAdmin):

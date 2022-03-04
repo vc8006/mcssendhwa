@@ -1,6 +1,7 @@
 {% extends "app/base.html" %}
 {% load static %}
 {% load myapp_extras %}
+{% load utils %}
 
 {% block title %} MCS {% endblock %}
 
@@ -116,7 +117,7 @@
     <tbody id="tbody">
         {% for dat in data %}
         <tr>
-            <td>{{dat.id}}</td>
+            <td> {{dat.sno}} </td>
             <td>{{dat.date|date:'Y-m-d'}}</td>
             <td>{{dat.docket_no}}</td>
             <td>{{dat.name}}</td>

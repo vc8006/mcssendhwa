@@ -410,11 +410,16 @@ def save_data(request,id):
             weight = request.POST['weight']
             docket_no = request.POST['docket_no']
             date = request.POST['date']
-            price = request.POST['price']                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            price = request.POST['price']          
+            sn = Bookings.objects.get(id=id)
+            sno = sn.s_no
             if(sid == ''):
-                usr = User(name=name,city=city,weight=weight,docket_no=docket_no,date=date,price=price,booking_id=id)
+                sno = sno + 1
+                sn.s_no = sno
+                sn.save()
+                usr = User(name=name,city=city,weight=weight,docket_no=docket_no,date=date,price=price,booking_id=id,sno=sno)
             else:
-                usr = User(id = sid,name=name,city=city,weight=weight,docket_no=docket_no,date=date,price=price,booking_id=id)
+                usr = User(id = sid,name=name,city=city,weight=weight,docket_no=docket_no,date=date,price=price,booking_id=id,sno=sno)
             usr.save()
             data = User.objects.values().filter(booking__id=id).order_by('-id')[:5]                                                                                                                                                                                                         
             # print(data)

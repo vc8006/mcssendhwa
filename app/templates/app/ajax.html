@@ -67,7 +67,7 @@
                     x = data.mydata
                     for(i = 0;i<x.length;i++)
                     {
-                        output += "<tr><td>" + x[i].id+"</td><td>"+x[i].date +"</td><td>" + x[i].docket_no +"</td><td>" + x[i].name +"</td><td>" + x[i].weight +"</td><td>" + x[i].city +"</td><td>" + x[i].price +"</td><td><input type='button' value='Edit' class='btn btn-warning btn-sm btn-edit' data-sid=" + x[i].id + ">"
+                        output += "<tr><td>" + x[i].sno+"</td><td>"+x[i].date +"</td><td>" + x[i].docket_no +"</td><td>" + x[i].name +"</td><td>" + x[i].weight +"</td><td>" + x[i].city +"</td><td>" + x[i].price +"</td><td><input type='button' value='Edit' class='btn btn-warning btn-sm btn-edit' data-sid=" + x[i].id + ">"
                     }
                     $("#tbody").html(output);
                     $("#stuid").val("")
