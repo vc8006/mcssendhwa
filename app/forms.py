@@ -21,5 +21,5 @@ class BookingRegistration(forms.ModelForm):
         fields = ['name','email']
         widgets = {
             'name':forms.TextInput(attrs={'class':'form-control','id':'booknameid'}),
-            'email':forms.TextInput(attrs={'class':'form-control','id':'bookemailid'}),
+            'email':forms.TextInput(attrs={'class':'form-control','id':'bookemailid','placeholder':'sendhwamadhurcourierservices@gmail.com'}),
         }

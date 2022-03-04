@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Bookings(models.Model):
     name = models.CharField(unique=True,max_length=70)
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100,default='sendhwamadhurcourierservices@gmail.com')
 
 class User(models.Model):
     date = models.DateField(default=datetime.now)
