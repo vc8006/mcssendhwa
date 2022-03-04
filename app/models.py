@@ -13,7 +13,7 @@ class Bookings(models.Model):
 class User(models.Model):
     sno = models.IntegerField(default=0)
     date = models.DateField(default=datetime.now)
-    docket_no = models.CharField(max_length=20)
+    docket_no = models.CharField(max_length=20,unique=True)
     name = models.CharField(max_length=100)
     weight = models.FloatField(default=0)
     city = models.CharField(max_length=100)
